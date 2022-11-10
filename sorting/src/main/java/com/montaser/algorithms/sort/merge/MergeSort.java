@@ -1,6 +1,15 @@
 package com.montaser.algorithms.sort.merge;
 
-public class MergeSort {
+/**
+ * @author Montaser Sbaih
+ * @version 1.0
+ * @email montaser.jjs@gmail.com
+ * @phone +962-786258874
+ * @algorithm Merge sort
+ * @since 10-11-2022
+ */
+
+public final class MergeSort {
 
     public void sort(int[] ar, int low, int high) {
         if (low < high) {
@@ -21,25 +30,19 @@ public class MergeSort {
         int i = low, j = mid, k = low;
         while (i < mid && j <= high) {
             if (helper[i] <= helper[j]) {
-                ar[k] = helper[i];
-                i++;
+                ar[k] = helper[i++];
             } else {
-                ar[k] = helper[j];
-                j++;
+                ar[k] = helper[j++];
             }
             k++;
         }
 
         while (i < mid) {
-            ar[k] = helper[i];
-            k++;
-            i++;
+            ar[k++] = helper[i++];
         }
 
         while (j <= high) {
-            ar[k] = helper[j];
-            k++;
-            j++;
+            ar[k++] = helper[j++];
         }
     }
 }

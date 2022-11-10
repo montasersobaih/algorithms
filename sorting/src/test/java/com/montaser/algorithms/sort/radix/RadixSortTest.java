@@ -1,6 +1,6 @@
 package com.montaser.algorithms.sort.radix;
 
-import com.montaser.algorithms.sort.count.CountingSort;
+import com.montaser.algorithms.sort.count.CountSort;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -14,15 +14,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+/**
+ * @author Montaser Sbaih
+ * @version 1.0
+ * @email montaser.jjs@gmail.com
+ * @phone +962-786258874
+ * @algorithm Radix sort
+ * @since 10-11-2022
+ */
+
 public class RadixSortTest {
 
-    private RadixSort radixSort = new RadixSort();
+    private final RadixSort radix = new RadixSort();
 
     private static BufferedReader reader;
 
     @BeforeClass
     public static void init() throws Exception {
-        URL file = CountingSort.class.getResource("/input");
+        URL file = CountSort.class.getResource("/input");
         Path filePath = Paths.get(Objects.requireNonNull(file).toURI());
         reader = Files.newBufferedReader(filePath);
     }
@@ -34,17 +43,17 @@ public class RadixSortTest {
 
     @Test
     public void test() throws IOException {
-        String length;
-        while (Objects.nonNull(length = reader.readLine())) {
+        String line;
+        while (Objects.nonNull(line = reader.readLine())) {
             int[] before = toIntArray(reader.readLine().split(",\\s"));
             int[] after = toIntArray(reader.readLine().split(",\\s"));
 
-            int maxNum = 0;
+            int max = 0;
             for (int n : before) {
-                maxNum = Math.max(maxNum, n);
+                max = Math.max(max, n);
             }
 
-            radixSort.sort(before, maxNum);
+            radix.sort(before, max);
 
             Assert.assertArrayEquals(before, after);
         }

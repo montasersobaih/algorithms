@@ -1,6 +1,15 @@
 package com.montaser.algorithms.sort.count;
 
-public final class CountingSort {
+/**
+ * @author Montaser Sbaih
+ * @version 1.0
+ * @email montaser.jjs@gmail.com
+ * @phone +962-786258874
+ * @algorithm Count sort
+ * @since 10-11-2022
+ */
+
+public final class CountSort {
 
     public void sort(int[] ar, int maxNum) {
         int[] output = new int[ar.length];
