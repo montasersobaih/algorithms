@@ -1,4 +1,4 @@
-package com.montaser.algorithms.sort.count;
+package com.montaser.algorithms.sort.heap;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -13,15 +13,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-public class CountingSortTest {
+/**
+ * @author Montaser Sbaih
+ * @version 1.0
+ * @email montaser.jjs@gmail.com
+ * @phone +962-786258874
+ * @algorithm Heap sort
+ * @since 10-11-2022
+ */
 
-    private CountingSort countingSort = new CountingSort();
+public class HeapSortTest {
+
+    private final HeapSort heap = new HeapSort();
 
     private static BufferedReader reader;
 
     @BeforeClass
     public static void init() throws Exception {
-        URL file = CountingSort.class.getResource("/input");
+        URL file = HeapSortTest.class.getResource("/input");
         Path filePath = Paths.get(Objects.requireNonNull(file).toURI());
         reader = Files.newBufferedReader(filePath);
     }
@@ -33,17 +42,12 @@ public class CountingSortTest {
 
     @Test
     public void test() throws IOException {
-        String length;
-        while (Objects.nonNull(length = reader.readLine())) {
+        String line;
+        while (Objects.nonNull(line = reader.readLine())) {
             int[] before = toIntArray(reader.readLine().split(",\\s"));
             int[] after = toIntArray(reader.readLine().split(",\\s"));
 
-            int maxNum = 0;
-            for (int n : before) {
-                maxNum = Math.max(maxNum, n);
-            }
-
-            countingSort.sort(before, maxNum);
+            heap.sort(before);
 
             Assert.assertArrayEquals(before, after);
         }
