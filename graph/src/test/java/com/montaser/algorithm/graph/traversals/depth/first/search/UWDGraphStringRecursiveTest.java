@@ -1,0 +1,114 @@
+package com.montaser.algorithm.graph.traversals.depth.first.search;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.BufferedReader;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.StringJoiner;
+import java.util.StringTokenizer;
+
+import static com.montaser.algorithm.graph.ResourcePath.INPUT;
+import static com.montaser.algorithm.graph.ResourcePath.OUTPUT;
+import static com.montaser.algorithm.graph.ResourcePath.UNWEIGHTED_DIRECTED_GRAPH;
+
+/**
+ * @author Montaser Sbaih
+ * @version 1.0
+ * @email montaser.jjs@gmail.com
+ * @phone +962-786258874
+ * @algorithm Breadth First Search (BFS)
+ * @since 10-11-2022
+ */
+
+public final class UWDGraphStringRecursiveTest {
+
+    private static final String INPUT_DIRECTORY = INPUT.concat(UNWEIGHTED_DIRECTED_GRAPH);
+
+    private static final String OUTPUT_DIRECTORY = OUTPUT.concat(UNWEIGHTED_DIRECTED_GRAPH).concat("/dfs");
+
+    private final Dfs<String> bfs = new DfsRecursiveStringImpl();
+
+    private static BufferedReader input;
+
+    private static BufferedReader output;
+
+    @Before
+    public void init() throws Exception {
+        URL inputPath = UWDGraphCharacterRecursiveTest.class.getResource(INPUT_DIRECTORY.concat("/string.input"));
+        URL outputPath = UWDGraphCharacterRecursiveTest.class.getResource(OUTPUT_DIRECTORY.concat("/string.output"));
+
+        input = Files.newBufferedReader(Paths.get(inputPath.toURI()));
+        output = Files.newBufferedReader(Paths.get(outputPath.toURI()));
+    }
+
+    @After
+    public void destroy() throws Exception {
+        input.close();
+        output.close();
+    }
+
+    @Test
+    public void findAllReachableVerticesStartingFromSpecificVertexUsingMatrix() throws Exception {
+        //No implementation
+    }
+
+    @Test
+    public void findAllReachableVerticesStartingFromSpecificVertexUsingArrayOfList() throws Exception {
+        //No implementation
+    }
+
+    @Test
+    public void findAllReachableVerticesStartingFromSpecificVertexUsingListOfList() throws Exception {
+        //No implementation
+    }
+
+    @Test
+    public void findAllReachableVerticesStartingFromSpecificVertexUsingMapOfList() throws Exception {
+        StringTokenizer tokenizer;
+
+        String line, expected;
+        while (Objects.nonNull(line = input.readLine()) && Objects.nonNull(expected = output.readLine())) {
+            tokenizer = new StringTokenizer(line);
+            int vNumber = Integer.parseInt(tokenizer.nextToken());
+            int eNumber = Integer.parseInt(tokenizer.nextToken());
+
+            Map<String, List<String>> adjacency = new HashMap<>();
+
+            while (eNumber-- > 0) {
+                tokenizer = new StringTokenizer(input.readLine());
+
+                String from = tokenizer.nextToken();
+                String dest = tokenizer.nextToken();
+
+                adjacency.putIfAbsent(from, new LinkedList<>());
+                adjacency.get(from).add(dest);
+            }
+
+            String start = input.readLine();
+            String result = bfs.find(adjacency, start);
+
+            input.readLine();//ignored the dashed line
+
+            StringJoiner joiner = new StringJoiner(", ", "[", "]");
+
+            tokenizer = new StringTokenizer(result);
+            tokenizer.nextToken();//skipping the start vertex
+            while (tokenizer.hasMoreTokens()) {
+                joiner.add(tokenizer.nextToken());
+            }
+
+            String fMessage = "All reachable vertices from vertex %s are:- %s";
+            Assert.assertEquals(String.format(fMessage, start, joiner).trim(), expected);
+        }
+    }
+}

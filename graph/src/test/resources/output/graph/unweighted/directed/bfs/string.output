@@ -1,0 +1,8 @@
+All reachable vertices from vertex City-1 are:- [City-2, City-3, City-5, City-6, City-7]
+All reachable vertices from vertex City-2 are:- [City-6]
+All reachable vertices from vertex City-3 are:- [City-7]
+All reachable vertices from vertex City-4 are:- [City-1, City-2, City-3, City-5, City-6, City-7]
+All reachable vertices from vertex City-5 are:- []
+All reachable vertices from vertex City-6 are:- []
+All reachable vertices from vertex City-7 are:- []
+All reachable vertices from vertex City-8 are:- [City-6]

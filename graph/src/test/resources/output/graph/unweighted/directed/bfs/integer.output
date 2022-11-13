@@ -1,0 +1,8 @@
+All reachable vertices from vertex 1 are:- [2, 3, 5, 6, 7]
+All reachable vertices from vertex 2 are:- [6]
+All reachable vertices from vertex 3 are:- [7]
+All reachable vertices from vertex 4 are:- [1, 2, 3, 5, 6, 7]
+All reachable vertices from vertex 5 are:- []
+All reachable vertices from vertex 6 are:- []
+All reachable vertices from vertex 7 are:- []
+All reachable vertices from vertex 8 are:- [6]

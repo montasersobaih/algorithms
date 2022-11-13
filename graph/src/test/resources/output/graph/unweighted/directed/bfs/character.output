@@ -1,0 +1,8 @@
+All reachable vertices from vertex A are:- [B, C, E, F, G]
+All reachable vertices from vertex B are:- [F]
+All reachable vertices from vertex C are:- [G]
+All reachable vertices from vertex D are:- [A, B, C, E, F, G]
+All reachable vertices from vertex E are:- []
+All reachable vertices from vertex F are:- []
+All reachable vertices from vertex G are:- []
+All reachable vertices from vertex H are:- [F]
