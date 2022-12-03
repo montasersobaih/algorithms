@@ -5,9 +5,13 @@ import java.util.Map;
 
 //Greedy Algorithms --> Shortest Path
 
-public interface Dijkstra {
+public interface Dijkstra<T> {
 
-    Vertex find(Map<Integer, List<Vertex>> adj, int start, int end);
+    Path<T> find(T[][] adjacency, T start, T end);
 
-    Vertex find(int[][] matrix, int start, int end);
+    Path<T> find(List<Edge<T>>[] adjacency, T start, T end);
+
+    Path<T> find(List<List<Edge<T>>> adjacency, T start, T end);
+
+    Path<T> find(Map<T, List<Edge<T>>> adjacency, T start, T end);
 }

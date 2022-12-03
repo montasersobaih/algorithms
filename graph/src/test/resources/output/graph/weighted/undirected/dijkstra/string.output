@@ -1,0 +1,4 @@
+The distance between City-1 and City-6 is --> 9, The path is City-1 -> City-3 -> City-4 -> City-6
+The distance between City-1 and City-4 is --> 56, The path is City-1 -> City-2 -> City-3 -> City-4
+The distance between City-1 and City-8 is --> 44, The path is City-1 -> City-6 -> City-3 -> City-4 -> City-8
+The distance between City-1 and City-21 is --> 16, The path is City-1 -> City-2 -> City-5 -> City-8 -> City-13 -> City-14 -> City-17 -> City-19 -> City-21

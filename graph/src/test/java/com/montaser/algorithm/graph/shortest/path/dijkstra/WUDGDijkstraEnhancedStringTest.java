@@ -1,0 +1,113 @@
+package com.montaser.algorithm.graph.shortest.path.dijkstra;
+
+import com.montaser.algorithm.graph.traversals.breadth.first.search.UWDGraphCharacterTest;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.BufferedReader;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.StringTokenizer;
+
+import static com.montaser.algorithm.graph.ResourcePath.INPUT;
+import static com.montaser.algorithm.graph.ResourcePath.OUTPUT;
+import static com.montaser.algorithm.graph.ResourcePath.WEIGHTED_UNDIRECTED_GRAPH;
+
+/**
+ * @author Montaser Sbaih
+ * @version 1.0
+ * @email montaser.jjs@gmail.com
+ * @phone +962-786258874
+ * @algorithm Dijkstra
+ * @since 15-11-2022
+ */
+
+public final class WUDGDijkstraEnhancedStringTest {
+
+    private static final String INPUT_DIRECTORY = INPUT.concat(WEIGHTED_UNDIRECTED_GRAPH);
+
+    private static final String OUTPUT_DIRECTORY = OUTPUT.concat(WEIGHTED_UNDIRECTED_GRAPH).concat("/dijkstra");
+
+    private final Dijkstra<String> dijkstra = new DijkstraEnhancedStringImpl();
+
+    private static BufferedReader input;
+
+    private static BufferedReader output;
+
+    @Before
+    public void init() throws Exception {
+        URL inputPath = UWDGraphCharacterTest.class.getResource(INPUT_DIRECTORY.concat("/string.input"));
+        URL outputPath = UWDGraphCharacterTest.class.getResource(OUTPUT_DIRECTORY.concat("/string.output"));
+
+        input = Files.newBufferedReader(Paths.get(inputPath.toURI()));
+        output = Files.newBufferedReader(Paths.get(outputPath.toURI()));
+    }
+
+    @After
+    public void destroy() throws Exception {
+        input.close();
+        output.close();
+    }
+
+    @Test
+    public void findTheShortestPathBetweenTwoVerticesUsingMatrix() throws Exception {
+
+    }
+
+    @Test
+    public void findTheShortestPathBetweenTwoVerticesUsingArrayOfList() throws Exception {
+
+    }
+
+    @Test
+    public void findTheShortestPathBetweenTwoVerticesUsingListOfList() throws Exception {
+
+    }
+
+    @Test
+    public void findTheShortestPathBetweenTwoVerticesUsingMapOfList() throws Exception {
+        StringTokenizer tokenizer;
+
+        String line, expected;
+        while (Objects.nonNull(line = input.readLine()) && Objects.nonNull(expected = output.readLine())) {
+            tokenizer = new StringTokenizer(line);
+
+            int vNumber = Integer.parseInt(tokenizer.nextToken());
+            int eNumber = Integer.parseInt(tokenizer.nextToken());
+
+            Map<String, List<Edge<String>>> adjacency = new HashMap<>();
+
+            while (eNumber-- > 0) {
+                tokenizer = new StringTokenizer(input.readLine());
+
+                String from = tokenizer.nextToken();
+                String dest = tokenizer.nextToken();
+                int weight = Integer.parseInt(tokenizer.nextToken());
+
+                adjacency.putIfAbsent(from, new LinkedList<>());
+                adjacency.get(from).add(new Edge<>(dest, weight));
+            }
+
+            tokenizer = new StringTokenizer(input.readLine());
+
+            String start = tokenizer.nextToken();
+            String dest = tokenizer.nextToken();
+
+            input.readLine();//ignored the dashed line
+
+            Path<String> result = dijkstra.find(adjacency, start, dest);
+
+            String fMessage = "The distance between %s and %s is --> %d, The path is %s";
+            System.out.printf((fMessage) + "%n", start, dest, result.getDistance(), result.getPath());
+            Assert.assertEquals(String.format(fMessage, start, dest, result.getDistance(), result.getPath()), expected);
+        }
+    }
+}

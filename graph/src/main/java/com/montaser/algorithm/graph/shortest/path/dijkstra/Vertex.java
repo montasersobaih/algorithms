@@ -1,41 +1,61 @@
 package com.montaser.algorithm.graph.shortest.path.dijkstra;
 
-class Vertex {
+/**
+ * @author Montaser Sbaih
+ * @version 1.0
+ * @email montaser.jjs@gmail.com
+ * @phone +962-786258874
+ * @since 12-11-2022
+ */
 
-    private int name;
+final class Vertex<T> {
 
-    private int weight, mindis;
+    private final T name;
+
+    private boolean visited;
+
+    private int distance;
 
     private String path;
 
-    public Vertex(int name, int weight, int mindis) {
+    public Vertex(T name, int distance) {
         this.name = name;
-        this.weight = weight;
-        this.mindis = mindis;
+        this.visited = false;
+        this.distance = distance;
         this.path = "";
     }
 
-    public Vertex(int name, int weight, int mindis, String path) {
+    public Vertex(T name, int distance, String path) {
         this.name = name;
-        this.weight = weight;
-        this.mindis = mindis;
+        this.distance = distance;
         this.path = path;
     }
 
-    public int getName() {
+    public Vertex(T name, boolean visited, int distance, String path) {
+        this.name = name;
+        this.visited = visited;
+        this.distance = distance;
+        this.path = path;
+    }
+
+    public T getName() {
         return name;
     }
 
-    public int getWeight() {
-        return weight;
+    public boolean isVisited() {
+        return visited;
     }
 
-    public int getMindis() {
-        return mindis;
+    public void setVisited(boolean visited) {
+        this.visited = visited;
     }
 
-    public void setMindis(int mindis) {
-        this.mindis = mindis;
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     public String getPath() {
